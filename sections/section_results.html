@@ -1,0 +1,236 @@
+<!-- ═══ SECTION: results ═══════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="results" label="Results" cta="false" -->
+<section id="results">
+  <div class="container">
+    <div class="section-label">Evaluation</div>
+    <h2 class="section-title">Achieved Results</h2>
+    <p class="section-desc">Semantic similarity (%) and execution time (s) of SENTI vs IPM and IPM_f across five datasets at four missing rates.</p>
+
+    <!-- Headline callout -->
+    <div style="margin-top:2rem;padding:1.25rem 1.75rem;background:rgba(0,112,192,0.07);border-left:4px solid var(--blue);border-radius:0 var(--r2) var(--r2) 0;">
+      <span style="font-family:var(--mono);font-size:0.8rem;color:var(--blue);">&#9733; Key finding — </span>
+      <span style="font-size:0.9rem;color:var(--text2);">SENTI achieves up to <strong>94.9%</strong> semantic similarity on the adult dataset while running up to <strong>115× faster</strong> than IPM — with no model training required.</span>
+    </div>
+
+    <!-- Metric summary cards -->
+    <div style="margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;">
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;">
+        <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Best Similarity</div>
+        <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--blue);">94.9%</div>
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);">adult · 10% missing</div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;">
+        <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Fastest Run</div>
+        <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--teal);">0.28s</div>
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);">australian & credit · 5%</div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;">
+        <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Datasets Tested</div>
+        <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--blue);">5</div>
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);">adult, austral., contrac., credit, imdb</div>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;">
+        <div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Baselines</div>
+        <div style="font-family:var(--display);font-size:2rem;font-weight:700;color:var(--blue);">2</div>
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);">IPM and IPM_f</div>
+      </div>
+    </div>
+
+    <!-- Dataset tabs + metric toggle -->
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+      <span style="font-family:var(--mono);font-size:0.72rem;color:var(--text3);">Dataset:</span>
+      <div id="res-tabs" style="display:flex;gap:0.5rem;flex-wrap:wrap;"></div>
+    </div>
+    <div style="margin-top:0.75rem;display:flex;gap:0.5rem;">
+      <button onclick="setMetric('sim')" id="btn-sim" style="font-family:var(--mono);font-size:0.72rem;padding:4px 14px;border-radius:20px;border:1px solid rgba(0,112,192,0.3);cursor:pointer;transition:all 0.2s;">Similarity %</button>
+      <button onclick="setMetric('time')" id="btn-time" style="font-family:var(--mono);font-size:0.72rem;padding:4px 14px;border-radius:20px;border:1px solid rgba(0,112,192,0.3);cursor:pointer;transition:all 0.2s;">Time (s)</button>
+    </div>
+
+    <div style="margin-top:1.5rem;position:relative;height:320px;">
+      <canvas id="resultsChart"></canvas>
+    </div>
+    <div id="res-legend" style="display:flex;gap:1.5rem;margin-top:1rem;font-family:var(--mono);font-size:0.72rem;color:var(--text3);flex-wrap:wrap;"></div>
+
+    <!-- Table controls -->
+    <div style="margin-top:2rem;display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;">
+      <button onclick="toggleTable()" id="table-toggle-btn"
+        style="font-family:var(--mono);font-size:0.72rem;padding:6px 18px;border-radius:20px;border:1px solid rgba(0,112,192,0.3);background:transparent;cursor:pointer;color:var(--text2);transition:all 0.2s;">
+        ▼ &nbsp;Show Full Table
+      </button>
+      <button onclick="exportCSV()"
+        style="font-family:var(--mono);font-size:0.72rem;padding:6px 18px;border-radius:20px;border:1px solid rgba(4,120,87,0.4);background:transparent;cursor:pointer;color:var(--teal);transition:all 0.2s;">
+        ↓ &nbsp;Export CSV
+      </button>
+      <input id="table-search" oninput="filterTable()" placeholder="Filter by dataset…"
+        style="font-family:var(--mono);font-size:0.72rem;padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text2);outline:none;min-width:180px;" />
+    </div>
+
+    <div id="results-table-wrap" style="display:none;margin-top:1.5rem;overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:0.75rem;">
+        <thead>
+          <tr style="border-bottom:2px solid rgba(0,112,192,0.3);">
+            <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">Dataset</th>
+            <th style="padding:8px 12px;text-align:center;color:var(--text3);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">Missing %</th>
+            <th style="padding:8px 12px;text-align:center;color:#0070C0;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">SENTI Sim</th>
+            <th style="padding:8px 12px;text-align:center;color:#0070C0;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">SENTI Time</th>
+            <th style="padding:8px 12px;text-align:center;color:#047857;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">IPM Sim</th>
+            <th style="padding:8px 12px;text-align:center;color:#047857;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">IPM Time</th>
+            <th style="padding:8px 12px;text-align:center;color:#B45309;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">IPM_f Sim</th>
+            <th style="padding:8px 12px;text-align:center;color:#B45309;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;">IPM_f Time</th>
+          </tr>
+        </thead>
+        <tbody id="results-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const DATA = {
+  adult:        { rates:[5,10,20,40], senti:[93.8,94.9,94.2,92.9], ipm:[86.5,90.8,89.4,88.4], ipmf:[85.2,89.3,88.7,87.9], tSenti:[1.11,1.84,2.84,3.97],  tIpm:[128.65,128.65,128.43,127.58], tIpmf:[3.27,2.96,2.90,2.78] },
+  australian:   { rates:[5,10,20,40], senti:[92.5,92.2,91.5,89.8], ipm:[89.8,90.1,89.8,89.6], ipmf:[89.5,89.5,89.9,89.8], tSenti:[0.28,0.42,0.63,0.97],  tIpm:[31.66,31.78,31.64,31.41],     tIpmf:[0.95,1.60,1.13,0.83] },
+  contraceptive:{ rates:[5,10,20,40], senti:[91.7,91.4,90.6,89.5], ipm:[84.5,84.0,83.7,83.1], ipmf:[83.2,83.8,83.6,82.8], tSenti:[0.47,0.72,1.19,1.75],  tIpm:[45.03,44.71,44.50,44.23],     tIpmf:[2.00,1.45,1.10,0.99] },
+  credit:       { rates:[5,10,20,40], senti:[87.6,91.8,91.1,89.8], ipm:[86.9,90.6,89.2,88.9], ipmf:[85.6,89.5,88.9,89.0], tSenti:[0.28,0.42,0.61,0.88],  tIpm:[31.97,32.21,32.19,31.90],     tIpmf:[0.94,1.67,1.23,0.86] },
+  imdb:         { rates:[5,10,20,40], senti:[89.1,89.0,88.6,88.4], ipm:[79.7,78.8,78.0,78.2], ipmf:[78.9,78.6,78.5,78.0], tSenti:[1.66,2.79,4.15,5.79],  tIpm:[152.86,152.72,152.06,149.71],  tIpmf:[4.14,4.00,3.87,3.63] }
+};
+const COLORS = { senti:'#0070C0', ipm:'#047857', ipmf:'#B45309' };
+const LABELS = { senti:'SENTI', ipm:'IPM', ipmf:'IPM_f' };
+let activeDataset = 'adult', activeMetric = 'sim', chart, tableVisible = false;
+
+function getChartData() {
+  const d = DATA[activeDataset];
+  return activeMetric === 'sim' ? {
+    datasets: [
+      { label:'SENTI', data:d.senti, backgroundColor:'#0070C0', borderRadius:4 },
+      { label:'IPM',   data:d.ipm,   backgroundColor:'#047857', borderRadius:4 },
+      { label:'IPM_f', data:d.ipmf,  backgroundColor:'#B45309', borderRadius:4 },
+    ], isLog:false, yMin:75, yMax:100, yLabel: v => v+'%'
+  } : {
+    datasets: [
+      { label:'SENTI', data:d.tSenti, backgroundColor:'#0070C0', borderRadius:4 },
+      { label:'IPM',   data:d.tIpm,   backgroundColor:'#047857', borderRadius:4 },
+      { label:'IPM_f', data:d.tIpmf,  backgroundColor:'#B45309', borderRadius:4 },
+    ], isLog:true, yMin:undefined, yMax:undefined, yLabel: v => v+'s'
+  };
+}
+
+function updateChart() {
+  const d = DATA[activeDataset];
+  const labels = d.rates.map(r => r+'%');
+  const cd = getChartData();
+  if (chart) { chart.destroy(); chart = null; }
+  chart = new Chart(document.getElementById('resultsChart'), {
+    type:'bar',
+    data:{ labels, datasets:cd.datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ display:false } },
+      scales:{
+        y:{ type:cd.isLog?'logarithmic':'linear', min:cd.yMin, max:cd.yMax,
+            ticks:{ font:{ family:'DM Mono, monospace', size:11 }, callback:cd.yLabel },
+            grid:{ color:'rgba(0,0,0,0.06)' } },
+        x:{ ticks:{ font:{ family:'DM Mono, monospace', size:11 } }, grid:{ display:false } }
+      }
+    }
+  });
+}
+
+function setMetric(m) {
+  activeMetric = m;
+  updateChart();
+  ['sim','time'].forEach(k => {
+    const btn = document.getElementById('btn-'+k);
+    btn.style.background = k===m ? '#0070C0' : 'transparent';
+    btn.style.color      = k===m ? 'white'   : 'var(--text2)';
+  });
+}
+
+function buildTabs() {
+  const c = document.getElementById('res-tabs');
+  Object.keys(DATA).forEach(key => {
+    const btn = document.createElement('button');
+    btn.textContent = key; btn.id = 'tab-'+key;
+    btn.style.cssText = 'font-family:var(--mono);font-size:0.72rem;padding:4px 14px;border-radius:20px;border:1px solid rgba(0,112,192,0.3);background:transparent;cursor:pointer;color:var(--text2);transition:all 0.2s;';
+    btn.onclick = () => { activeDataset = key; updateChart(); updateTabStyles(); };
+    c.appendChild(btn);
+  });
+  updateTabStyles();
+}
+
+function updateTabStyles() {
+  Object.keys(DATA).forEach(key => {
+    const btn = document.getElementById('tab-'+key);
+    const on = key===activeDataset;
+    btn.style.background  = on ? '#0070C0' : 'transparent';
+    btn.style.color       = on ? 'white'   : 'var(--text2)';
+    btn.style.borderColor = on ? '#0070C0' : 'rgba(0,112,192,0.3)';
+  });
+}
+
+function buildLegend() {
+  const el = document.getElementById('res-legend');
+  ['senti','ipm','ipmf'].forEach(k => {
+    el.innerHTML += `<span style="display:flex;align-items:center;gap:6px;">
+      <span style="width:10px;height:10px;border-radius:2px;background:${COLORS[k]};display:inline-block;"></span>${LABELS[k]}
+    </span>`;
+  });
+}
+
+function buildTable(filter) {
+  const tbody = document.getElementById('results-tbody');
+  const names = { adult:'adult', australian:'austral.', contraceptive:'contrac.', credit:'credit', imdb:'imdb' };
+  let rows = '';
+  Object.entries(DATA).forEach(([key, d]) => {
+    if (filter && !key.toLowerCase().includes(filter.toLowerCase())) return;
+    d.rates.forEach((r, i) => {
+      const simVals = [d.senti[i], d.ipm[i], d.ipmf[i]];
+      const timeVals = [d.tSenti[i], d.tIpm[i], d.tIpmf[i]];
+      const bestSim  = Math.max(...simVals);
+      const bestTime = Math.min(...timeVals);
+      const simStyle  = (v) => v===bestSim  ? 'font-weight:700;color:#0070C0;' : 'color:var(--text2);';
+      const timeStyle = (v) => v===bestTime ? 'font-weight:700;color:#047857;' : 'color:var(--text3);';
+      rows += `<tr style="border-bottom:1px solid rgba(0,0,0,0.06);">
+        <td style="padding:7px 12px;color:var(--text2);">${i===0?names[key]:''}</td>
+        <td style="padding:7px 12px;text-align:center;color:var(--text3);">${r}%</td>
+        <td style="padding:7px 12px;text-align:center;${simStyle(d.senti[i])}">${d.senti[i]}</td>
+        <td style="padding:7px 12px;text-align:center;${timeStyle(d.tSenti[i])}">${d.tSenti[i]}s</td>
+        <td style="padding:7px 12px;text-align:center;${simStyle(d.ipm[i])}">${d.ipm[i]}</td>
+        <td style="padding:7px 12px;text-align:center;${timeStyle(d.tIpm[i])}">${d.tIpm[i]}s</td>
+        <td style="padding:7px 12px;text-align:center;${simStyle(d.ipmf[i])}">${d.ipmf[i]}</td>
+        <td style="padding:7px 12px;text-align:center;${timeStyle(d.tIpmf[i])}">${d.tIpmf[i]}s</td>
+      </tr>`;
+    });
+  });
+  tbody.innerHTML = rows || '<tr><td colspan="8" style="padding:1rem;text-align:center;color:var(--text3);">No results match.</td></tr>';
+}
+
+function filterTable() {
+  buildTable(document.getElementById('table-search').value);
+}
+
+function toggleTable() {
+  tableVisible = !tableVisible;
+  document.getElementById('results-table-wrap').style.display = tableVisible ? 'block' : 'none';
+  document.getElementById('table-toggle-btn').innerHTML = tableVisible ? '▲ &nbsp;Hide Table' : '▼ &nbsp;Show Full Table';
+}
+
+function exportCSV() {
+  let csv = 'Dataset,Missing%,SENTI_Sim,SENTI_Time,IPM_Sim,IPM_Time,IPMf_Sim,IPMf_Time\n';
+  Object.entries(DATA).forEach(([key, d]) => {
+    d.rates.forEach((r, i) => {
+      csv += `${key},${r},${d.senti[i]},${d.tSenti[i]},${d.ipm[i]},${d.tIpm[i]},${d.ipmf[i]},${d.tIpmf[i]}\n`;
+    });
+  });
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'senti_results.csv';
+  a.click();
+}
+
+buildTabs();
+buildLegend();
+buildTable();
+setMetric('sim');
+</script>
+<!-- ════════════════════════════════════════════════════════════════════════ -->

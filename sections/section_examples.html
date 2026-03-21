@@ -1,0 +1,161 @@
+<!-- ═══ SECTION: examples ════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="examples" label="Examples" cta="false" -->
+<section id="examples">
+  <div class="container">
+    <div class="section-label">Examples</div>
+    <h2 class="section-title">Toy Examples</h2>
+    <p class="section-desc">Explore both imputation modes with the canonical toy dataset — shipping records with categorical missing values.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('static')">📊 Static Imputation</button>
+      <button class="tab-btn" onclick="switchTab('incremental')">⚡ Incremental Imputation</button>
+    </div>
+
+    <!-- STATIC TAB -->
+    <div class="tab-content active" id="tab-static">
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:1rem;">
+        BATCH R₀ — One-shot imputation of a static incomplete relation
+      </div>
+      <div class="example-layout">
+        <div class="ex-card">
+          <div class="ex-card-head">
+            <div class="ex-card-title">R₀ — Incomplete (⊥ = MISSING)</div>
+            <span class="ex-badge badge-missing">⊥ MISSING</span>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>TupleID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+            <tbody>
+              <tr><td>t₁</td><td>Charlie-3</td><td>Active</td><td>Spring</td><td>France</td><td>Paris</td></tr>
+              <tr><td>t₂</td><td>Alpha-7</td><td>Delayed</td><td>Summer</td><td>USA</td><td><span class="cell-missing">⊥</span></td></tr>
+              <tr><td>t₃</td><td>Beta-7</td><td>Pending</td><td>Winter</td><td><span class="cell-missing">⊥</span></td><td>New York</td></tr>
+              <tr><td>t₄</td><td>Alpha-1</td><td><span class="cell-missing">⊥</span></td><td>Jul-Aug</td><td>USA</td><td>NYC</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ex-card">
+          <div class="ex-card-head">
+            <div class="ex-card-title">R₀* — After SENTI Imputation</div>
+            <span class="ex-badge badge-imputed">✦ IMPUTED</span>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>TupleID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+            <tbody>
+              <tr><td>t₁</td><td>Charlie-3</td><td>Active</td><td>Spring</td><td>France</td><td>Paris</td></tr>
+              <tr><td>t₂</td><td>Alpha-7</td><td>Delayed</td><td>Summer</td><td>USA</td><td><span class="cell-imputed">NYC</span></td></tr>
+              <tr><td>t₃</td><td>Beta-7</td><td>Pending</td><td>Winter</td><td><span class="cell-imputed">USA</span></td><td>New York</td></tr>
+              <tr><td>t₄</td><td>Alpha-1</td><td><span class="cell-imputed">Delayed</span></td><td>Jul-Aug</td><td>USA</td><td>NYC</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem;padding:1rem 1.5rem;background:rgba(0,201,177,0.06);border:1px solid rgba(0,201,177,0.15);border-radius:var(--r2);">
+        <span style="font-family:var(--mono);font-size:0.7rem;color:var(--teal);">✦ SENTI identified semantic neighbours for each incomplete tuple and propagated the most likely values through majority-vote imputation.</span>
+      </div>
+    </div>
+
+    <!-- INCREMENTAL TAB -->
+    <div class="tab-content" id="tab-incremental">
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:1rem;">
+        Online imputation — new batches are appended and imputed without full reprocessing
+      </div>
+
+      <div class="incr-layout">
+        <!-- Batch R0 -->
+        <div class="incr-batch">
+          <div class="incr-batch-head">
+            <span class="ex-badge badge-batch">BATCH R₀</span>
+            <span class="batch-title">Initial Relation — Static imputation applied first</span>
+          </div>
+          <div class="incr-tables">
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+              <tbody>
+                <tr><td>t₁</td><td>Charlie-3</td><td>Active</td><td>Spring</td><td>France</td><td>Paris</td></tr>
+                <tr><td>t₂</td><td>Alpha-7</td><td>Delayed</td><td>Summer</td><td>USA</td><td><span class="cell-missing">⊥</span></td></tr>
+                <tr><td>t₃</td><td>Beta-7</td><td>Pending</td><td>Winter</td><td><span class="cell-missing">⊥</span></td><td>New York</td></tr>
+                <tr><td>t₄</td><td>Alpha-1</td><td><span class="cell-missing">⊥</span></td><td>Jul-Aug</td><td>USA</td><td>NYC</td></tr>
+              </tbody>
+            </table>
+            <div class="mini-arrow">→</div>
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+              <tbody>
+                <tr><td>t₁</td><td>Charlie-3</td><td>Active</td><td>Spring</td><td>France</td><td>Paris</td></tr>
+                <tr><td>t₂</td><td>Alpha-7</td><td>Delayed</td><td>Summer</td><td>USA</td><td><span class="cell-imputed">NYC</span></td></tr>
+                <tr><td>t₃</td><td>Beta-7</td><td>Pending</td><td>Winter</td><td><span class="cell-imputed">USA</span></td><td>New York</td></tr>
+                <tr><td>t₄</td><td>Alpha-1</td><td><span class="cell-imputed">Delayed</span></td><td>Jul-Aug</td><td>USA</td><td>NYC</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:0.5rem 1rem;font-family:var(--mono);font-size:0.7rem;color:var(--sky);">
+          <span style="flex:1;height:1px;background:var(--border2);opacity:0.4;"></span>
+          ↓ FAISS index updated with R₀* embeddings
+          <span style="flex:1;height:1px;background:var(--border2);opacity:0.4;"></span>
+        </div>
+
+        <!-- Batch U1 -->
+        <div class="incr-batch">
+          <div class="incr-batch-head">
+            <span class="ex-badge badge-incr">BATCH U₁</span>
+            <span class="batch-title">Incremental Append — new tuples arrive with missing values</span>
+          </div>
+          <div class="incr-tables">
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+              <tbody>
+                <tr><td>t₅</td><td>Delta-9</td><td>Ready</td><td>Oct-Nov</td><td>Deutschland</td><td>Berlin</td></tr>
+                <tr><td>t₆</td><td>Beta-7</td><td><span class="cell-missing">⊥</span></td><td>Winter</td><td>US</td><td><span class="cell-missing">⊥</span></td></tr>
+              </tbody>
+            </table>
+            <div class="mini-arrow">→</div>
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+              <tbody>
+                <tr><td>t₅</td><td>Delta-9</td><td>Ready</td><td>Oct-Nov</td><td>Deutschland</td><td>Berlin</td></tr>
+                <tr><td>t₆</td><td>Beta-7</td><td><span class="cell-imputed">Pending</span></td><td>Winter</td><td>US</td><td><span class="cell-imputed">New York</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;padding:0.5rem 1rem;font-family:var(--mono);font-size:0.7rem;color:var(--sky);">
+          <span style="flex:1;height:1px;background:var(--border2);opacity:0.4;"></span>
+          ↓ FAISS index updated with U₁* embeddings
+          <span style="flex:1;height:1px;background:var(--border2);opacity:0.4;"></span>
+        </div>
+
+        <!-- Batch U2 -->
+        <div class="incr-batch">
+          <div class="incr-batch-head">
+            <span class="ex-badge badge-incr">BATCH U₂</span>
+            <span class="batch-title">Single-Tuple Append — minimal overhead per new record</span>
+          </div>
+          <div class="incr-tables">
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+              <tbody>
+                <tr><td>t₇</td><td>Gamma-2</td><td>Active</td><td><span class="cell-missing">⊥</span></td><td>France</td><td><span class="cell-missing">⊥</span></td></tr>
+              </tbody>
+            </table>
+            <div class="mini-arrow">→</div>
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>CargoID</th><th>Status</th><th>Period</th><th>Country</th><th>Hub</th></tr></thead>
+              <tbody>
+                <tr><td>t₇</td><td>Gamma-2</td><td>Active</td><td><span class="cell-imputed">Spring</span></td><td>France</td><td><span class="cell-imputed">Paris</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem;padding:1rem 1.5rem;background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.15);border-radius:var(--r2);">
+        <span style="font-family:var(--mono);font-size:0.7rem;color:var(--sky);">⚡ Incremental mode updates the FAISS index after each batch, enabling constant-time imputation of new tuples relative to the growing dataset.</span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════════════ -->

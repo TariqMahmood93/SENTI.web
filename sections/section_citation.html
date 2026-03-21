@@ -1,0 +1,43 @@
+<!-- ═══ SECTION: citation ══════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="citation" label="Paper" cta="false" -->
+<section id="citation">
+  <div class="container">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">Cite This Work</h2>
+    <p class="section-desc">If you use SENTI in your research, please cite our paper.</p>
+
+    <div style="margin-top:2.5rem;background:var(--panel);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(0,112,192,0.08);border-bottom:1px solid var(--border);">
+        <span style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;">BibTeX</span>
+        <button onclick="copyCitation()" style="font-family:var(--mono);font-size:0.72rem;padding:4px 14px;background:var(--blue);color:white;border:none;border-radius:6px;cursor:pointer;" id="copy-btn">Copy</button>
+      </div>
+      <pre id="citation-block" style="margin:0;padding:1.5rem 2rem;font-family:var(--mono);font-size:0.78rem;color:var(--text2);line-height:1.8;overflow-x:auto;white-space:pre;">@article{ALFANO2026104291,
+  title   = {Semantic-Aware Data Imputation in Dynamic Relational Databases
+             via Pre-trained Language Models},
+  journal = {Information Fusion},
+  pages   = {104291},
+  year    = {2026},
+  issn    = {1566-2535},
+  doi     = {https://doi.org/10.1016/j.inffus.2026.104291},
+  url     = {https://www.sciencedirect.com/science/article/pii/S1566253526001703},
+  author  = {Gianvincenzo Alfano and Sergio Greco and Lucio {La Cava}
+             and Tariq Mahmood and Irina Trubitsyna}
+}</pre>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <a href="https://www.sciencedirect.com/science/article/pii/S1566253526001703" target="_blank" class="btn-primary" style="display:inline-flex;">📄 &nbsp;Read Paper</a>
+    </div>
+  </div>
+</section>
+<script>
+function copyCitation() {
+  const text = document.getElementById('citation-block').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+<!-- ════════════════════════════════════════════════════════════════════════ -->

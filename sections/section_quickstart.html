@@ -1,0 +1,58 @@
+<!-- ═══ SECTION: quickstart ════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="quickstart" label="Quickstart" cta="false" -->
+<section id="quickstart">
+  <div class="container">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">How to Use SENTI</h2>
+    <p class="section-desc">Run SENTI locally in three steps. Requires Python 3.9+ and pip.</p>
+
+    <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:1.5rem;">
+
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 20px;background:rgba(0,0,0,0.04);border-bottom:1px solid var(--border);">
+          <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--blue);opacity:0.2;">01</span>
+          <span style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);font-weight:600;">Clone & Install</span>
+        </div>
+        <pre style="margin:0;padding:1.25rem 1.5rem;font-family:var(--mono);font-size:0.8rem;color:var(--text2);line-height:1.8;overflow-x:auto;"><span style="color:var(--text3);"># Clone the repository</span>
+git clone https://github.com/TariqMahmood93/SENTI
+cd senti
+
+<span style="color:var(--text3);"># Install dependencies</span>
+pip install -r requirements.txt</pre>
+      </div>
+
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 20px;background:rgba(0,0,0,0.04);border-bottom:1px solid var(--border);">
+          <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--blue);opacity:0.2;">02</span>
+          <span style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);font-weight:600;">Launch the App</span>
+        </div>
+        <pre style="margin:0;padding:1.25rem 1.5rem;font-family:var(--mono);font-size:0.8rem;color:var(--text2);line-height:1.8;overflow-x:auto;"><span style="color:var(--text3);"># Start the Streamlit interface</span>
+streamlit run app.py
+
+<span style="color:var(--text3);"># App opens at http://localhost:8501</span></pre>
+      </div>
+
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 20px;background:rgba(0,0,0,0.04);border-bottom:1px solid var(--border);">
+          <span style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--blue);opacity:0.2;">03</span>
+          <span style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);font-weight:600;">Run via Python API</span>
+        </div>
+        <pre style="margin:0;padding:1.25rem 1.5rem;font-family:var(--mono);font-size:0.8rem;color:var(--text2);line-height:1.8;overflow-x:auto;"><span style="color:var(--text3);"># Static imputation</span>
+<span style="color:var(--blue);">from</span> senti <span style="color:var(--blue);">import</span> SENTIImputer
+
+imputer = SENTIImputer(model=<span style="color:var(--teal);">"all-MiniLM-L6-v2"</span>, k=<span style="color:var(--gold);">5</span>)
+imputed_df = imputer.fit_transform(df_with_nulls)
+
+<span style="color:var(--text3);"># Incremental imputation</span>
+imputer.update(new_batch_df)
+imputed_new = imputer.transform(new_batch_df)</pre>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="https://github.com/TariqMahmood93/SENTI-Demo/" target="_blank" class="btn-primary" style="display:inline-flex;">🚀 &nbsp;Try Online</a>
+      <a href="https://github.com/TariqMahmood93/SENTI/" target="_blank" class="btn-secondary" style="display:inline-flex;">⌥ &nbsp;View on GitHub</a>
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════════════ -->

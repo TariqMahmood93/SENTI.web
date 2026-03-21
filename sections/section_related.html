@@ -1,0 +1,62 @@
+<!-- ═══ SECTION: related ═══════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="related" label="Related Work" cta="false" -->
+<section id="related">
+  <div class="container">
+    <div class="section-label">Literature</div>
+    <h2 class="section-title">Related Work</h2>
+    <p class="section-desc">Key methods SENTI was compared against and foundational work that inspired its design.</p>
+
+    <div style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+
+      <a href="#" target="_blank" style="text-decoration:none;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:all 0.2s;height:100%;" onmouseover="this.style.borderColor='var(--blue)';this.style.background='rgba(0,112,192,0.10)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--panel)'">
+          <div style="font-family:var(--mono);font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Baseline · IPM</div>
+          <div style="font-family:var(--display);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">Incremental Probabilistic Model for Data Imputation</div>
+          <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:0.75rem;">The primary baseline SENTI outperforms. Probabilistic approach with high computational cost at scale.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">Probabilistic</span>
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">Incremental</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://arxiv.org/abs/1908.10084" target="_blank" style="text-decoration:none;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:all 0.2s;height:100%;" onmouseover="this.style.borderColor='var(--blue)';this.style.background='rgba(0,112,192,0.10)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--panel)'">
+          <div style="font-family:var(--mono);font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Foundation · Embeddings</div>
+          <div style="font-family:var(--display);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks</div>
+          <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:0.75rem;">Reimers & Gurevych, 2019. The sentence transformer framework SENTI builds upon for semantic encoding.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">SBERT</span>
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">Transformers</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://github.com/facebookresearch/faiss" target="_blank" style="text-decoration:none;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:all 0.2s;height:100%;" onmouseover="this.style.borderColor='var(--blue)';this.style.background='rgba(0,112,192,0.10)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--panel)'">
+          <div style="font-family:var(--mono);font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Component · Indexing</div>
+          <div style="font-family:var(--display);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">FAISS: A Library for Efficient Similarity Search</div>
+          <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:0.75rem;">Facebook AI Research, 2017. Powers SENTI's fast approximate k-NN retrieval over embedding space.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">k-NN</span>
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">Similarity Search</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://arxiv.org/abs/2201.09648" target="_blank" style="text-decoration:none;">
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:all 0.2s;height:100%;" onmouseover="this.style.borderColor='var(--blue)';this.style.background='rgba(0,112,192,0.10)'" onmouseout="this.style.borderColor='var(--border)';this.style.background='var(--panel)'">
+          <div style="font-family:var(--mono);font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Related · Imputation</div>
+          <div style="font-family:var(--display);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">GAIN: Missing Data Imputation using Generative Adversarial Nets</div>
+          <div style="font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:0.75rem;">Yoon et al., 2018. GAN-based imputation approach — requires training unlike SENTI's zero-shot method.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">GAN</span>
+            <span style="font-family:var(--mono);font-size:0.65rem;padding:2px 8px;border-radius:3px;background:rgba(0,112,192,0.08);border:1px solid rgba(0,112,192,0.15);color:var(--sky);">Deep Learning</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════════════ -->

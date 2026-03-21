@@ -1,0 +1,33 @@
+<!-- ═══ SECTION: about ═════════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="about" label="About" cta="false" -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">What is SENTI?</h2>
+    <p class="section-desc">SENTI (SENTI-based Data Imputation) is a data imputation system that uses sentence transformer embeddings to semantically recover missing values in incomplete relational tables — without any model training or labeled data.</p>
+
+    <div class="about-grid">
+      <div class="about-visual">
+        <div style="font-family:var(--mono);font-size:0.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.2rem;">Imputation Pipeline</div>
+        <div class="pipeline">
+          <div class="pipe-step"><div class="pipe-num">1</div><div><div class="pipe-label">Incomplete Dataset R₀</div><div class="pipe-sub">Input with missing values (⊥)</div></div></div>
+          <div class="pipe-connector"></div>
+          <div class="pipe-step"><div class="pipe-num">2</div><div><div class="pipe-label">Sentence Embedding</div><div class="pipe-sub">Encode tuples via SENTI / LaBSE</div></div></div>
+          <div class="pipe-connector"></div>
+          <div class="pipe-step"><div class="pipe-num">3</div><div><div class="pipe-label">Semantic Similarity Search</div><div class="pipe-sub">FAISS k-NN over embedded space</div></div></div>
+          <div class="pipe-connector"></div>
+          <div class="pipe-step"><div class="pipe-num">4</div><div><div class="pipe-label">Value Propagation</div><div class="pipe-sub">Majority vote / weighted imputation</div></div></div>
+          <div class="pipe-connector"></div>
+          <div class="pipe-step"><div class="pipe-num">5</div><div><div class="pipe-label">Complete Dataset R₀*</div><div class="pipe-sub">Imputed output ready for downstream use</div></div></div>
+        </div>
+      </div>
+      <div class="about-points">
+        <div class="about-point"><div class="ap-icon">🎯</div><div><div class="ap-title">Zero-Shot Imputation</div><div class="ap-text">No pre-training or labeled missing data required. SENTI leverages pre-trained sentence transformers to impute values purely from semantic context.</div></div></div>
+        <div class="about-point"><div class="ap-icon">📐</div><div><div class="ap-title">Relational Semantics</div><div class="ap-text">Treats tuples as natural language sentences, capturing inter-attribute relationships that tabular models miss.</div></div></div>
+        <div class="about-point"><div class="ap-icon">⚡</div><div><div class="ap-title">Incremental Support</div><div class="ap-text">Handles streaming data with online index updates — new tuples are imputed without reprocessing the entire dataset.</div></div></div>
+        <div class="about-point"><div class="ap-icon">🔬</div><div><div class="ap-title">Evaluation Suite</div><div class="ap-text">Built-in metrics (accuracy, F1, RMSE) compare imputed vs. ground truth, with support for multiple null injection patterns (MCAR, MAR, MNAR).</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════════════ -->

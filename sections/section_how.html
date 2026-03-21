@@ -1,0 +1,15 @@
+<!-- ═══ SECTION: how ═══════════════════════════════════════════════════════ -->
+<!-- NAV_LINK: id="how" label="How It Works" cta="false" -->
+<section id="how">
+  <div class="container">
+    <div class="section-label">Methodology</div>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-desc">SENTI follows a three-phase process — from raw incomplete data through semantic embedding to fully imputed output.</p>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><div class="step-icon">🗂️</div><div class="step-title">Null Injection & Preprocessing</div><div class="step-text">Missing values are identified or synthetically injected under MCAR, MAR, or MNAR patterns. Columns are selected and tuples are serialized into natural language strings.</div></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-icon">🧠</div><div class="step-title">Semantic Encoding via SENTI</div><div class="step-text">Each tuple is encoded using a sentence transformer (SENTI or LaBSE). The resulting embeddings capture semantic proximity between records, including those with missing attributes.</div></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-icon">🔍</div><div class="step-title">k-NN Search & Value Recovery</div><div class="step-text">A FAISS index enables fast approximate nearest-neighbour retrieval. The k most similar complete tuples vote to determine the imputed value for each missing cell.</div></div>
+    </div>
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════════════════ -->
