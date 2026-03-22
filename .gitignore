@@ -1,3 +1,6 @@
+# Build artifacts
+TIDI_website_v0.html
+
 # Python
 __pycache__/
 *.py[cod]
