@@ -2,7 +2,7 @@
 """
 build.py — SENTI website builder
 ---------------------------------
-Assembles TIDI_website_v0.html from modular section files.
+Assembles index.html from modular section files.
 
 USAGE:
     python3 build.py
@@ -10,11 +10,11 @@ USAGE:
 HOW IT WORKS:
     1. Edit SECTIONS below to add/remove/reorder sections.
     2. For the 'screenshots' section, edit SCREENSHOTS to configure images.
-    3. Run this script — it writes TIDI_website_v0.html ready to open in a browser.
+    3. Run this script — it writes index.html ready to open in a browser.
 
 NOTES:
     - Screenshot images are referenced by filename (not embedded).
-    - Keep your image files in the same folder as build.py and TIDI_website_v0.html.
+    - Keep your image files in the same folder as build.py and index.html.
     - Open the HTML via a local server (python3 -m http.server) for images to load,
       OR just double-click it — modern browsers allow same-folder image references.
 """
@@ -25,7 +25,7 @@ from pathlib import Path
 # ── Configuration ────────────────────────────────────────────────────────────────
 
 SECTIONS_DIR = Path(__file__).parent / "sections"
-OUTPUT       = Path(__file__).parent / "TIDI_website_v0.html"
+OUTPUT       = Path(__file__).parent / "index.html"
 
 # ── Sections to include ──────────────────────────────────────────────────────────
 # Comment out any line to exclude that section. Reorder to change page order.
