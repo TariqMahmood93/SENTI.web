@@ -69,7 +69,7 @@ python3 -m http.server 8000
 
 ## Live App
 
-[senti-data-imputation.streamlit.app](https://senti-data-imputation.streamlit.app/)
+[https://senti-app.streamlit.app/](https://senti-app.streamlit.app/)
 
 ---
 
