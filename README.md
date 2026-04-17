@@ -58,12 +58,7 @@ SECTIONS = [
 
 ### Previewing Locally
 
-Open `index.html` directly in a browser, or serve it via a local server for images to load correctly:
-
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
+```(https://tariqmahmood93.github.io/SENTI.web/)
 
 ---
 
