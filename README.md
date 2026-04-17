@@ -42,23 +42,10 @@ python3 build.py
 
 This assembles `index.html` from `main.html` and all enabled section files.
 
-### Adding or Removing Sections
 
-Edit the `SECTIONS` list in `build.py`:
+### Previewing
 
-```python
-SECTIONS = [
-    "hero",
-    "about",
-    # "quickstart",   # comment out to hide
-    "results",
-    "contact",
-]
-```
-
-### Previewing Locally
-
-```(https://tariqmahmood93.github.io/SENTI.web/)
+(https://tariqmahmood93.github.io/SENTI.web/)
 
 ---
 
