@@ -1,6 +1,4 @@
-# SENTI — Semantic-Aware Data Imputation
-
-Marketing and documentation website for **SENTI**, a zero-shot data imputation framework using sentence transformers and semantic similarity to recover missing values in relational datasets.
+# SENTI — SENtence Transfor based data Imputation
 
 Developed at [DIMES, University of Calabria](https://dimes.unical.it).
 Published in *Information Fusion*, 2026.
